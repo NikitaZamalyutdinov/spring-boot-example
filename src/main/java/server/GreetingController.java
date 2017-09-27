@@ -1,5 +1,6 @@
 package server;
 
+import groovy.transform.Canonical;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

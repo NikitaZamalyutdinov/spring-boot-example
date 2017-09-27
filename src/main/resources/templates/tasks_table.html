@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table style="width: 100%;">
+
+<table style="width: 100%; table-layout: fixed; word-wrap: break-word;">
+    <thead style="padding-bottom: 10px;">
+    <tr>
+        <th style="padding-bottom: 10px;">Backlog</th>
+        <th style="padding-bottom: 10px;">In progress</th>
+        <th style="padding-bottom: 10px;">Done</th>
+    </tr>
+    </thead>
+    <tr>
+        <td width="30%" style="padding-right: 5%;">
+            <table style="width: 100%; table-layout: fixed;">
+                <th:block th:each="task : ${backlogTasks}">
+                    <tr>
+                        <td width="8%">
+                            <img th:title="${task.type.capitalized()}" th:src="@{${'images/'+ task.type.toString().toLowerCase() + '.png'}}" width="16" height="16">
+                        </td>
+                        <td width="30%">
+                            <span th:text="${task.priority.capitalized()}" th:title="${'Priority:' + task.priority.capitalized()}" style="color: #FF0000;"></span>
+                        </td>
+                        <td width="38%"></td>
+                        <td width="12%">
+                            <span th:text="${task.progress + '%'}" th:title="${'Progress: ' + task.progress + '%'}"></span>
+                        </td>
+                        <td width="10%">
+                            <img th:title="${'Assigned to: ' + task.assignedTo.shortName}" th:src="@{${'images/avatars/' + task.assignedTo.avatar + '.png'}}" width="16" height="16">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <div style="overflow: hidden; height: 20px; text-overflow: ellipsis; white-space: nowrap;" th:text="${task.name}" th:title="${task.name}"></div>
+                        </td>
+                    </tr>
+                </th:block>
+            </table>
+            <div >issue
+
+            </div>
+        </td>
+        <td width="30%" style="padding-right: 5%;">
+            <ol>
+                <li title="issue title" data-key="key">
+                    <img src="images/task.png" width="16" height="16">
+                    <span>issue heaa</span>
+                </li>
+                <li>
+                    <img src="images/bug.png" width="16" height="16">
+                    <span>issue descr2</span>
+                </li>
+                <li>
+                    <img src="images/issue1.png" width="16" height="16">
+                    <span>issue descr2</span>
+                </li>
+            </ol>
+        </td>
+        <td width="30%">Data3</td>
+    </tr>
+</table>
+
+<table>
+    <tr th:each="var : ${#vars}">
+        <td th:text="${var.key}"></td>
+        <td th:text="${var.value}"></td>
+    </tr>
+</table>
+</body>
+</html>

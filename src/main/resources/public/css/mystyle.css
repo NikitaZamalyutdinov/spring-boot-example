@@ -1,2 +1,3 @@
-.column-center {margin-left: 40%; margin-right: 40%;}
-.center-auto-margin {margin-left: auto; margin-right: auto; width=100px;}
+.column-center {margin-left: 30%; margin-right: 30%;}
+.center-auto-margin {margin: auto; width=30%; display: block;}
+.site-body{background-color: #eeeeee; padding-top: 30px;}
