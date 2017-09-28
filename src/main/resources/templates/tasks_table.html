@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<table style="width: 100%;">
-
 <table style="width: 100%; table-layout: fixed; word-wrap: break-word;">
     <thead style="padding-bottom: 10px;">
     <tr>
@@ -21,22 +21,30 @@
                 <th:block th:each="task : ${backlogTasks}">
                     <tr>
                         <td width="8%">
-                            <img th:title="${task.type.capitalized()}" th:src="@{${'images/'+ task.type.toString().toLowerCase() + '.png'}}" width="16" height="16">
+                            <img th:title="${task.type.capitalized()}"
+                                 th:src="@{${'images/'+ task.type.toString().toLowerCase() + '.png'}}" width="16"
+                                 height="16">
                         </td>
                         <td width="30%">
-                            <span th:text="${task.priority.capitalized()}" th:title="${'Priority:' + task.priority.capitalized()}" th:style="${'color: ' + task.priority.getAssociatedColor()}" ></span>
+                            <span th:text="${task.priority.capitalized()}"
+                                  th:title="${'Priority:' + task.priority.capitalized()}"
+                                  th:style="${'color: ' + task.priority.getAssociatedColor()}"></span>
                         </td>
                         <td width="38%"></td>
                         <td width="12%">
-                            <span th:text="${task.progress + '%'}" th:title="${'Progress: ' + task.progress + '%'}"></span>
+                            <span th:text="${task.progress + '%'}"
+                                  th:title="${'Progress: ' + task.progress + '%'}"></span>
                         </td>
                         <td width="10%">
-                            <img th:title="${'Assigned to: ' + task.assignedTo.shortName}" th:src="@{${'images/avatars/' + task.assignedTo.avatar + '.png'}}" width="16" height="16">
+                            <img th:title="${'Assigned to: ' + task.assignedTo.shortName}"
+                                 th:src="@{${'images/avatars/' + task.assignedTo.avatar + '.png'}}" width="16"
+                                 height="16">
                         </td>
                     </tr>
                     <tr>
                         <td colspan="5">
-                            <div style="overflow: hidden; height: 20px; text-overflow: ellipsis; white-space: nowrap;" th:text="${task.name}" th:title="${task.name}"></div>
+                            <div style="overflow: hidden; height: 20px; text-overflow: ellipsis; white-space: nowrap;"
+                                 th:text="${task.name}" th:title="${task.name}"></div>
                         </td>
                     </tr>
                 </th:block>
@@ -61,12 +69,31 @@
         <td width="30%">Data3</td>
     </tr>
 </table>
+<div class="container">
+    <form action="#" th:action="@{/taskAdd}" th:object="${newTask}" method="post">
 
-<table>
-    <tr th:each="var : ${#vars}">
-        <td th:text="${var.key}"></td>
-        <td th:text="${var.value}"></td>
-    </tr>
-</table>
+        <div class="form-group">
+            <label class="text-primary" for="pwd">Name</label>
+            <input class="form-control" th:field="*{name}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="text-primary" for="pwd">Type</label>
+            <input class="form-control" th:field="*{type}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="text-primary" for="pwd">Status</label>
+            <input class="form-control" th:field="*{status}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="text-primary" for="pwd">Priority</label>
+            <input class="form-control" id="pwd" th:field="*{priority}"/>
+        </div>
+        <button type="submit" class="btn-info">Add task</button>
+    </form>
+</div>
+
 </body>
 </html>

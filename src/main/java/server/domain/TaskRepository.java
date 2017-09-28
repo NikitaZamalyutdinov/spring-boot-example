@@ -1,13 +1,14 @@
 package server.domain;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 
 import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TaskRepository {
-    private static List<Task> tasks = ImmutableList.of(
+    private static List<Task> tasks = Lists.newArrayList(
             new Task(Task.Status.BACKLOG, Task.Type.BUG, "Task1"),
             new Task(Task.Status.BACKLOG, Task.Type.TASK, "Task10"),
             new Task(Task.Status.BACKLOG, Task.Type.ISSUE, "heaahsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"),
@@ -46,5 +47,9 @@ public class TaskRepository {
         return tasks.stream()
                 .filter(t -> doneTaskPosibleStatuses.contains(t.getStatus()))
                 .collect(Collectors.toList());
+    }
+
+    public void putTask(Task task){
+        tasks.add(task);
     }
 }

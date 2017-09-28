@@ -1,5 +1,7 @@
 package server.domain;
 
+import java.util.EnumSet;
+
 public class Task {
 
     public enum Status {
@@ -38,6 +40,14 @@ public class Task {
         }
     }
 
+    public static EnumSet<Type> allTypes(){
+        return EnumSet.allOf(Type.class);
+    }
+
+    public static EnumSet<Status> allStatuses(){
+        return EnumSet.allOf(Status.class);
+    }
+
     private Status status;
     private Type type;
     private String name;
@@ -48,6 +58,10 @@ public class Task {
     private User creator;
 
     public Task() {
+    }
+
+    public static Task create(Task task){
+        return new Task(task.getStatus(), task.getType(), task.getName());
     }
 
     public Task(Status status, Type type, String name) {

@@ -10,13 +10,13 @@ import server.domain.UserRepository;
 public class LectureRepositoryConfiguration {
 
     @Bean
-    @Profile("LECTURE")
+    //@Profile("LECTURE")
     public UserRepository injectUserRepository() {
         return new UserRepository();
     }
 
     @Bean
-    @Profile("LECTURE")
+    //@Profile("LECTURE")
     public TaskRepository injectTaskRepository() {
         return new TaskRepository();
     }
