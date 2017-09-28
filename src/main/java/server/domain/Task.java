@@ -1,4 +1,4 @@
-package server.Data;
+package server.domain;
 
 public class Task {
 
@@ -23,6 +23,18 @@ public class Task {
 
         public String capitalized(){
             return Utilite.capitalize(this.toString());
+        }
+
+        public String getAssociatedColor(){
+            switch (this) {
+                case LOW:
+                    return "#8370D8";
+                case MEDIUM:
+                    return "#00A876";
+                case HIGH:
+                    return "#E869AA";
+            }
+            return "";
         }
     }
 

@@ -1,4 +1,4 @@
-package server.Data;
+package server.domain;
 
 public class Utilite {
 

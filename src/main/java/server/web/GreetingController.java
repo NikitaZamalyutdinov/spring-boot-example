@@ -1,4 +1,4 @@
-package server;
+package server.web;
 
 import groovy.transform.Canonical;
 import org.springframework.stereotype.Controller;

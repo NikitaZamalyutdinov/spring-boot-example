@@ -1,4 +1,4 @@
-package server.Data;
+package server.domain;
 
 public class User {
     private String name;

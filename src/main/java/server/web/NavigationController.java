@@ -1,21 +1,27 @@
-package server;
+package server.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import server.Data.User;
-import server.Data.UserRepository;
+import server.domain.User;
+import server.domain.UserRepository;
 
 @Controller
 public class NavigationController {
 
-    UserRepository userRepository = new UserRepository();
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping("/login")
     public String loginApi(@ModelAttribute User user, Model model) {
         boolean foundUser = userRepository.containsUser(user);
-        model.addAttribute("logged", foundUser);
-        return "index";
+        if (foundUser) {
+            return "redirect:tasks";
+        } else {
+            model.addAttribute("logged", false);
+            return "index";
+        }
     }
 
     @RequestMapping("/index")

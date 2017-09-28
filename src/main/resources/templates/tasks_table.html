@@ -24,7 +24,7 @@
                             <img th:title="${task.type.capitalized()}" th:src="@{${'images/'+ task.type.toString().toLowerCase() + '.png'}}" width="16" height="16">
                         </td>
                         <td width="30%">
-                            <span th:text="${task.priority.capitalized()}" th:title="${'Priority:' + task.priority.capitalized()}" style="color: #FF0000;"></span>
+                            <span th:text="${task.priority.capitalized()}" th:title="${'Priority:' + task.priority.capitalized()}" th:style="${'color: ' + task.priority.getAssociatedColor()}" ></span>
                         </td>
                         <td width="38%"></td>
                         <td width="12%">
@@ -41,9 +41,6 @@
                     </tr>
                 </th:block>
             </table>
-            <div >issue
-
-            </div>
         </td>
         <td width="30%" style="padding-right: 5%;">
             <ol>

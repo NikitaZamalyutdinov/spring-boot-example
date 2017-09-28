@@ -1,20 +1,23 @@
-package server.Data;
+package server.domain;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TaskRepository {
     private static List<Task> tasks = ImmutableList.of(
             new Task(Task.Status.BACKLOG, Task.Type.BUG, "Task1"),
-            new Task(Task.Status.BACKLOG, Task.Type.BUG, "Task10"),
+            new Task(Task.Status.BACKLOG, Task.Type.TASK, "Task10"),
             new Task(Task.Status.BACKLOG, Task.Type.ISSUE, "heaahsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"),
             new Task(Task.Status.IN_PROGRESS, Task.Type.BUG, "Task2"),
             new Task(Task.Status.DONE, Task.Type.BUG, "Task3")) ;
+
+    static {
+        tasks.get(0).setPriority(Task.Priority.LOW);
+        tasks.get(2).setPriority(Task.Priority.HIGH);
+    }
 
     private static EnumSet<Task.Status> backlogTaskPosibleStatuses =
             EnumSet.of(Task.Status.BACKLOG, Task.Status.BLOCKED, Task.Status.BLOCKER);
