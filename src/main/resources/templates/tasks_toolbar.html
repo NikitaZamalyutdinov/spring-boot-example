@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="show_add_task_panel">
+    <button v-on:click="inverseSeen">
+        <img id="arrow_left" v-if="seen" src="images/arrow_left.png" width="32" height="32">
+        <img id="arrow_down" v-else="seen" src="images/arrow_down.png" width="32" height="32">
+    </button>
+    <div v-if="seen" id="tasks_add_panel" th:insert="tasks_add"></div>
+</div>
+
+<script src="js/tasks_mv.js"></script>
+</body>
+</html>

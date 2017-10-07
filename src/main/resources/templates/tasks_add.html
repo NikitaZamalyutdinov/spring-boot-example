@@ -5,6 +5,25 @@
     <title>Title</title>
 </head>
 <body>
+<div class="container">
+    <form action="#" th:action="@{/taskAdd}" th:object="${newTask}" method="post">
 
+        <label class="text-primary">Name</label>
+        <input width="30%" th:field="*{name}"/>
+        <label class="text-primary">Type</label>
+        <select th:field="*{type}">
+            <option th:each="type : ${taskTypes}"
+                    th:value="${type}"
+                    th:text="${type}"></option>
+        </select>
+        <label class="text-primary">Status</label>
+        <select th:field="*{status}">
+            <option th:each="status : ${taskStatuses}"
+                    th:value="${status}"
+                    th:text="${status}"></option>
+        </select>
+        <button type="submit">Add task</button>
+    </form>
+</div>
 </body>
 </html>
