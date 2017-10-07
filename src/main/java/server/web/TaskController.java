@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import server.domain.Task;
 import server.domain.TaskRepository;
 import server.domain.User;
+import server.web.ui.TasksToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class TaskController {
 
     @RequestMapping(value = "/tasks")
     public String getAllTasks(Model model) {
+        model.addAttribute("toolbar", new TasksToolbar());
         model.addAttribute("newTask", new Task());
         return "tasks";
     }

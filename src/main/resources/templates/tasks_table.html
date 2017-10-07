@@ -51,49 +51,74 @@
             </table>
         </td>
         <td width="30%" style="padding-right: 5%;">
-            <ol>
-                <li title="issue title" data-key="key">
-                    <img src="images/task.png" width="16" height="16">
-                    <span>issue heaa</span>
-                </li>
-                <li>
-                    <img src="images/bug.png" width="16" height="16">
-                    <span>issue descr2</span>
-                </li>
-                <li>
-                    <img src="images/issue1.png" width="16" height="16">
-                    <span>issue descr2</span>
-                </li>
-            </ol>
+            <table style="width: 100%; table-layout: fixed;">
+                <th:block th:each="task : ${inProgressTasks}">
+                    <tr>
+                        <td width="8%">
+                            <img th:title="${task.type.capitalized()}"
+                                 th:src="@{${'images/'+ task.type.toString().toLowerCase() + '.png'}}" width="16"
+                                 height="16">
+                        </td>
+                        <td width="30%">
+                            <span th:text="${task.priority.capitalized()}"
+                                  th:title="${'Priority:' + task.priority.capitalized()}"
+                                  th:style="${'color: ' + task.priority.getAssociatedColor()}"></span>
+                        </td>
+                        <td width="38%"></td>
+                        <td width="12%">
+                            <span th:text="${task.progress + '%'}"
+                                  th:title="${'Progress: ' + task.progress + '%'}"></span>
+                        </td>
+                        <td width="10%">
+                            <img th:title="${'Assigned to: ' + task.assignedTo.shortName}"
+                                 th:src="@{${'images/avatars/' + task.assignedTo.avatar + '.png'}}" width="16"
+                                 height="16">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <div style="overflow: hidden; height: 20px; text-overflow: ellipsis; white-space: nowrap;"
+                                 th:text="${task.name}" th:title="${task.name}"></div>
+                        </td>
+                    </tr>
+                </th:block>
+            </table>
         </td>
-        <td width="30%">Data3</td>
+        <td width="30%">
+            <table style="width: 100%; table-layout: fixed;">
+                <th:block th:each="task : ${doneTasks}">
+                    <tr>
+                        <td width="8%">
+                            <img th:title="${task.type.capitalized()}"
+                                 th:src="@{${'images/'+ task.type.toString().toLowerCase() + '.png'}}" width="16"
+                                 height="16">
+                        </td>
+                        <td width="30%">
+                            <span th:text="${task.priority.capitalized()}"
+                                  th:title="${'Priority:' + task.priority.capitalized()}"
+                                  th:style="${'color: ' + task.priority.getAssociatedColor()}"></span>
+                        </td>
+                        <td width="38%"></td>
+                        <td width="12%">
+                            <span th:text="${task.progress + '%'}"
+                                  th:title="${'Progress: ' + task.progress + '%'}"></span>
+                        </td>
+                        <td width="10%">
+                            <img th:title="${'Assigned to: ' + task.assignedTo.shortName}"
+                                 th:src="@{${'images/avatars/' + task.assignedTo.avatar + '.png'}}" width="16"
+                                 height="16">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <div style="overflow: hidden; height: 20px; text-overflow: ellipsis; white-space: nowrap;"
+                                 th:text="${task.name}" th:title="${task.name}"></div>
+                        </td>
+                    </tr>
+                </th:block>
+            </table>
+        </td>
     </tr>
 </table>
-<div class="container">
-    <form action="#" th:action="@{/taskAdd}" th:object="${newTask}" method="post">
-
-        <div class="form-group">
-            <label class="text-primary" for="pwd">Name</label>
-            <input class="form-control" th:field="*{name}"/>
-        </div>
-
-        <div class="form-group">
-            <label class="text-primary" for="pwd">Type</label>
-            <input class="form-control" th:field="*{type}"/>
-        </div>
-
-        <div class="form-group">
-            <label class="text-primary" for="pwd">Status</label>
-            <input class="form-control" th:field="*{status}"/>
-        </div>
-
-        <div class="form-group">
-            <label class="text-primary" for="pwd">Priority</label>
-            <input class="form-control" id="pwd" th:field="*{priority}"/>
-        </div>
-        <button type="submit" class="btn-info">Add task</button>
-    </form>
-</div>
-
 </body>
 </html>
