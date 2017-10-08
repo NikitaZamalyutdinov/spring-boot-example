@@ -1,44 +1,46 @@
 <!DOCTYPE html>
-<html>
-<head lang="en" xmlns:th="http://www.thymeleaf.org">
-    <title>Login</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css"/>
 </head>
 <body>
-<div class="column-center">
-    <div th:if="${logged}">
-        <div class="alert alert-success" role="alert">
-            <strong>Well done!</strong> You successfully logged in!
+<div th:replace="header"></div>
+<div class="container site-body">
+    <div class="column-center">
+        <div th:if="${param.error}">
+            <div class="alert alert-danger" role="alert">
+                <strong>Oh snap!</strong> Login or password wrong. Try again!
+            </div>
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Login to site
+                </h3>
+            </div>
+            <div class="panel-body">
+                <form th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <label class="text-primary">Name</label>
+                        <input type="text" class="form-control" name="username"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-primary">Password</label>
+                        <input type="password" class="form-control" name="password"/>
+                    </div>
+                    <button type="submit" class="center-auto-margin btn btn-lg btn-info">Login</button>
+                </form>
+            </div>
         </div>
     </div>
-    <div th:unless="${logged}">
-        <div class="alert alert-danger" role="alert">
-            <strong>Oh snap!</strong> Login or password wrong. Try again!
-        </div>
-    </div>
-
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                Login to site
-            </h3>
-        </div>
-        <div class="panel-body">
-            <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-                <div class="form-group">
-                    <label class="text-primary" for="usr">Name</label>
-                    <input type="text" class="form-control" id="usr" th:field="*{name}"/>
-                </div>
-                <div class="form-group">
-                    <label class="text-primary" for="pwd">Password</label>
-                    <input type="password" class="form-control" id="pwd" th:field="*{password}"/>
-                </div>
-                <button type="submit" class="center-auto-margin btn btn-lg btn-info">Login</button>
-            </form>
-        </div>
-    </div>
-
-
 </div>
+
 </body>
 </html>
-
