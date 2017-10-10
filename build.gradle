@@ -31,6 +31,7 @@ targetCompatibility = 1.8
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.springframework.boot:spring-boot-devtools")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     compileOnly 'org.projectlombok:lombok:1.16.18'
@@ -44,6 +45,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
     compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.7.RELEASE'
+
+    compile("postgresql:postgresql:9.1-901.jdbc4")
 
 
 }

@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import server.domain.Task;
-import server.domain.TaskRepository;
+import server.inmemory.TaskRepositoryFake;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +15,11 @@ import java.util.List;
 public class TaskController {
 
     @Autowired
-    private TaskRepository taskRepository;
+    private TaskRepositoryFake taskRepositoryFake;
 
     @RequestMapping(value = "/taskAdd")
     public String addTask(@ModelAttribute Task task){
-        taskRepository.putTask(Task.create(task));
+        taskRepositoryFake.putTask(Task.create(task));
         return "redirect:tasks";
     }
 
@@ -31,17 +31,17 @@ public class TaskController {
 
     @ModelAttribute("backlogTasks")
     public List<Task> populateBacklogTasks(){
-        return taskRepository.getBacklogTasks();
+        return taskRepositoryFake.getBacklogTasks();
     }
 
     @ModelAttribute("inProgressTasks")
     public List<Task> populateInProgressTasks(){
-        return taskRepository.getInProgressTasks();
+        return taskRepositoryFake.getInProgressTasks();
     }
 
     @ModelAttribute("doneTasks")
     public List<Task> populateDoneTasks(){
-        return taskRepository.getDoneTasks();
+        return taskRepositoryFake.getDoneTasks();
     }
 
     @ModelAttribute("taskTypes")

@@ -75,8 +75,8 @@ public class Task {
         this.description = description;
         this.progress = progress;
         this.priority = priority;
-        User assinbedToSafe = assignedTo != null ? assignedTo : UserRepository.getFakeUser();
-        User creatorSafe = creator != null ? creator : UserRepository.getFakeUser();
+        User assinbedToSafe = assignedTo != null ? assignedTo : new User("Unknown", "", "", "1");
+        User creatorSafe = creator != null ? creator : new User("Unknown", "", "", "1");;
         this.assignedTo = assinbedToSafe;
         this.creator = creatorSafe;
     }

@@ -9,18 +9,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import server.domain.UserRepository;
-
-import java.nio.file.attribute.UserPrincipalNotFoundException;
+import server.inmemory.UserRepositoryFake;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        server.domain.User user =  userRepository.findByName(username).get();
+        server.domain.User user =  userRepository.findByName(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }

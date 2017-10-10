@@ -1,15 +1,15 @@
-package server.domain;
+package server.inmemory;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.springframework.stereotype.Repository;
+import server.domain.Task;
 
 import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class TaskRepository {
+public class TaskRepositoryFake {
     private static List<Task> tasks = Lists.newArrayList(
             new Task(Task.Status.BACKLOG, Task.Type.BUG, "Task1"),
             new Task(Task.Status.BACKLOG, Task.Type.TASK, "Task10"),
