@@ -2,11 +2,9 @@ package server;
 
 import org.junit.Assert;
 import org.junit.Test;
-import server.domain.Task;
+import server.domain.entity.TaskFake;
 import server.web.TaskController;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TaskType {
@@ -14,6 +12,6 @@ public class TaskType {
 
     @Test
     public void a(){
-        Assert.assertTrue(taskController.populateTaskTypes().containsAll(Arrays.asList(Task.Type.values())));
+        Assert.assertTrue(taskController.populateTaskTypes().containsAll(Arrays.asList(TaskFake.Type.values())));
     }
 }

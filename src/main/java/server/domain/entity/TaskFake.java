@@ -1,31 +1,25 @@
-package server.domain;
+package server.domain.entity;
 
 import java.util.EnumSet;
 
-public class Task {
+public class TaskFake {
 
     public enum Status {
         BACKLOG, IN_PROGRESS, DONE, ON_REVIEW, BLOCKED, BLOCKER;
 
-        public String capitalized(){
-            return Utilite.capitalize(this.toString());
-        }
+
     }
 
     public enum Type {
         ISSUE, BUG, IMPROVEMENT, TASK;
 
-        public String capitalized(){
-            return Utilite.capitalize(this.toString());
-        }
+
     }
 
     public enum Priority {
         LOW, MEDIUM, HIGH;
 
-        public String capitalized(){
-            return Utilite.capitalize(this.toString());
-        }
+
 
         public String getAssociatedColor(){
             switch (this) {
@@ -48,6 +42,7 @@ public class Task {
         return EnumSet.allOf(Status.class);
     }
 
+    private Long id;
     private Status status;
     private Type type;
     private String name;
@@ -57,18 +52,18 @@ public class Task {
     private User assignedTo;
     private User creator;
 
-    public Task() {
+    public TaskFake() {
     }
 
-    public static Task create(Task task){
-        return new Task(task.getStatus(), task.getType(), task.getName());
+    public static TaskFake create(TaskFake task){
+        return new TaskFake(task.getStatus(), task.getType(), task.getName());
     }
 
-    public Task(Status status, Type type, String name) {
+    public TaskFake(Status status, Type type, String name) {
         this(status, type, name, "", 0, Priority.MEDIUM, null, null);
     }
 
-    public Task(Status status, Type type, String name, String description, int progress, Priority priority, User assignedTo, User creator) {
+    public TaskFake(Status status, Type type, String name, String description, int progress, Priority priority, User assignedTo, User creator) {
         this.status = status;
         this.type = type;
         this.name = name;
@@ -154,7 +149,7 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Task task = (Task) o;
+        TaskFake task = (TaskFake) o;
 
         if (progress != task.progress) return false;
         if (status != task.status) return false;

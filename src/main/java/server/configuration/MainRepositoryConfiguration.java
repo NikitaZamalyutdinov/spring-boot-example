@@ -13,8 +13,8 @@ public class MainRepositoryConfiguration {
     @Autowired
     private UserRepository userRepositoryDb;
 
-    @Bean
+    /*@Bean
     public UserRepository injectUserRepository() {
         return userRepositoryDb;
-    }
+    }*/
 }

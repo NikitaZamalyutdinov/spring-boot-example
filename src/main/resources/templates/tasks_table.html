@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
 </head>
 <body>
+<div id="log-start"></div>
+<div id="log-end"></div>
 <table style="width: 100%; table-layout: fixed; word-wrap: break-word;">
     <thead style="padding-bottom: 10px;">
     <tr>
@@ -16,18 +18,18 @@
     </tr>
     </thead>
     <tr>
-        <td width="30%" style="padding-right: 5%;">
+        <td id="column1" width="30%" style="padding-right: 5%;">
             <table style="width: 100%; table-layout: fixed;">
-                <th:block th:each="task : ${backlogTasks}">
+                <tbody id="draggable" th:each="task : ${backlogTasks}">
                     <tr>
                         <td width="8%">
-                            <img th:title="${task.type.capitalized()}"
+                            <img th:title="${task.type}"
                                  th:src="@{${'images/'+ task.type.toString().toLowerCase() + '.png'}}" width="16"
                                  height="16">
                         </td>
                         <td width="30%">
-                            <span th:text="${task.priority.capitalized()}"
-                                  th:title="${'Priority:' + task.priority.capitalized()}"
+                            <span th:text="${task.priority}"
+                                  th:title="${'Priority:' + task.priority}"
                                   th:style="${'color: ' + task.priority.getAssociatedColor()}"></span>
                         </td>
                         <td width="38%"></td>
@@ -36,9 +38,15 @@
                                   th:title="${'Progress: ' + task.progress + '%'}"></span>
                         </td>
                         <td width="10%">
-                            <img th:title="${'Assigned to: ' + task.assignedTo.shortName}"
+                            <div th:if="${task.assignedTo}">
+                                <img th:title="${'Assigned to: ' + task.assignedTo.shortName}"
                                  th:src="@{${'images/avatars/' + task.assignedTo.avatar + '.png'}}" width="16"
                                  height="16">
+                            </div>
+                            <div th:unless="${task.assignedTo}">
+                                <img title="Assigned to: Nobody"
+                                     src="images/avatars/Mystery.png" width="16" height="16">
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -47,21 +55,21 @@
                                  th:text="${task.name}" th:title="${task.name}"></div>
                         </td>
                     </tr>
-                </th:block>
+                </tbody>
             </table>
         </td>
-        <td width="30%" style="padding-right: 5%;">
+        <td id="column2" width="30%" style="padding-right: 5%;">
             <table style="width: 100%; table-layout: fixed;">
                 <th:block th:each="task : ${inProgressTasks}">
                     <tr>
                         <td width="8%">
-                            <img th:title="${task.type.capitalized()}"
+                            <img th:title="${task.type}"
                                  th:src="@{${'images/'+ task.type.toString().toLowerCase() + '.png'}}" width="16"
                                  height="16">
                         </td>
                         <td width="30%">
-                            <span th:text="${task.priority.capitalized()}"
-                                  th:title="${'Priority:' + task.priority.capitalized()}"
+                            <span th:text="${task.priority}"
+                                  th:title="${'Priority:' + task.priority}"
                                   th:style="${'color: ' + task.priority.getAssociatedColor()}"></span>
                         </td>
                         <td width="38%"></td>
@@ -70,9 +78,15 @@
                                   th:title="${'Progress: ' + task.progress + '%'}"></span>
                         </td>
                         <td width="10%">
-                            <img th:title="${'Assigned to: ' + task.assignedTo.shortName}"
-                                 th:src="@{${'images/avatars/' + task.assignedTo.avatar + '.png'}}" width="16"
-                                 height="16">
+                            <div th:if="${task.assignedTo}">
+                                <img th:title="${'Assigned to: ' + task.assignedTo.shortName}"
+                                     th:src="@{${'images/avatars/' + task.assignedTo.avatar + '.png'}}" width="16"
+                                     height="16">
+                            </div>
+                            <div th:unless="${task.assignedTo}">
+                                <img title="Assigned to: Nobody"
+                                     src="images/avatars/Mystery.png" width="16" height="16">
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -84,18 +98,18 @@
                 </th:block>
             </table>
         </td>
-        <td width="30%">
+        <td id="column3" width="30%">
             <table style="width: 100%; table-layout: fixed;">
                 <th:block th:each="task : ${doneTasks}">
                     <tr>
                         <td width="8%">
-                            <img th:title="${task.type.capitalized()}"
+                            <img th:title="${task.type}"
                                  th:src="@{${'images/'+ task.type.toString().toLowerCase() + '.png'}}" width="16"
                                  height="16">
                         </td>
                         <td width="30%">
-                            <span th:text="${task.priority.capitalized()}"
-                                  th:title="${'Priority:' + task.priority.capitalized()}"
+                            <span th:text="${task.priority}"
+                                  th:title="${'Priority:' + task.priority}"
                                   th:style="${'color: ' + task.priority.getAssociatedColor()}"></span>
                         </td>
                         <td width="38%"></td>
@@ -104,9 +118,15 @@
                                   th:title="${'Progress: ' + task.progress + '%'}"></span>
                         </td>
                         <td width="10%">
-                            <img th:title="${'Assigned to: ' + task.assignedTo.shortName}"
-                                 th:src="@{${'images/avatars/' + task.assignedTo.avatar + '.png'}}" width="16"
-                                 height="16">
+                            <div th:if="${task.assignedTo}">
+                                <img th:title="${'Assigned to: ' + task.assignedTo.shortName}"
+                                     th:src="@{${'images/avatars/' + task.assignedTo.avatar + '.png'}}" width="16"
+                                     height="16">
+                            </div>
+                            <div th:unless="${task.assignedTo}">
+                                <img title="Assigned to: Nobody"
+                                     src="images/avatars/Mystery.png" width="16" height="16">
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -120,5 +140,6 @@
         </td>
     </tr>
 </table>
+<script src="js/row_dragging.js"></script>
 </body>
 </html>

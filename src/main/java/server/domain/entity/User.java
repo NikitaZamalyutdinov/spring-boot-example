@@ -1,4 +1,4 @@
-package server.domain;
+package server.domain.entity;
 
 import javax.persistence.*;
 

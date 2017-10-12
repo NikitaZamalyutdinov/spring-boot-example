@@ -2,7 +2,7 @@ package server.inmemory;
 
 import com.google.common.collect.ImmutableList;
 import org.springframework.stereotype.Repository;
-import server.domain.User;
+import server.domain.entity.User;
 
 import java.util.*;
 

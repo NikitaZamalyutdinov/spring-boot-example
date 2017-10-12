@@ -22,6 +22,18 @@
                     th:value="${status}"
                     th:text="${status}"></option>
         </select>
+        <label class="text-primary">Priority</label>
+        <select th:field="*{priority}">
+            <option th:each="priority : ${taskPriorities}"
+                    th:value="${priority}"
+                    th:text="${priority}"></option>
+        </select>
+        <label class="text-primary">Assigned to</label>
+        <select th:field="*{assignedTo}">
+            <option th:each="userrr : ${allUsers}"
+                    th:value="${userrr.id}"
+                    th:text="${userrr.shortName}"></option>
+        </select>
         <button type="submit">Add task</button>
     </form>
 </div>

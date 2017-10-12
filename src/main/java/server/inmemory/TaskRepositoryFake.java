@@ -2,7 +2,7 @@ package server.inmemory;
 
 import com.google.common.collect.Lists;
 import org.springframework.stereotype.Repository;
-import server.domain.Task;
+import server.domain.entity.TaskFake;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -10,48 +10,48 @@ import java.util.stream.Collectors;
 
 @Repository
 public class TaskRepositoryFake {
-    private static List<Task> tasks = Lists.newArrayList(
-            new Task(Task.Status.BACKLOG, Task.Type.BUG, "Task1"),
-            new Task(Task.Status.BACKLOG, Task.Type.TASK, "Task10"),
-            new Task(Task.Status.BACKLOG, Task.Type.ISSUE, "heaahsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"),
-            new Task(Task.Status.IN_PROGRESS, Task.Type.BUG, "Task2"),
-            new Task(Task.Status.DONE, Task.Type.BUG, "Task3")) ;
+    private static List<TaskFake> tasks = Lists.newArrayList(
+            new TaskFake(TaskFake.Status.BACKLOG, TaskFake.Type.BUG, "Task1"),
+            new TaskFake(TaskFake.Status.BACKLOG, TaskFake.Type.TASK, "Task10"),
+            new TaskFake(TaskFake.Status.BACKLOG, TaskFake.Type.ISSUE, "heaahsddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"),
+            new TaskFake(TaskFake.Status.IN_PROGRESS, TaskFake.Type.BUG, "Task2"),
+            new TaskFake(TaskFake.Status.DONE, TaskFake.Type.BUG, "Task3")) ;
 
     static {
-        tasks.get(0).setPriority(Task.Priority.LOW);
-        tasks.get(2).setPriority(Task.Priority.HIGH);
+        tasks.get(0).setPriority(TaskFake.Priority.LOW);
+        tasks.get(2).setPriority(TaskFake.Priority.HIGH);
     }
 
-    private static EnumSet<Task.Status> backlogTaskPosibleStatuses =
-            EnumSet.of(Task.Status.BACKLOG, Task.Status.BLOCKED, Task.Status.BLOCKER);
-    private static EnumSet<Task.Status> inProgressTaskPosibleStatuses =
-            EnumSet.of(Task.Status.IN_PROGRESS, Task.Status.ON_REVIEW,
-                    Task.Status.BLOCKED, Task.Status.BLOCKER);
-    private static EnumSet<Task.Status> doneTaskPosibleStatuses = EnumSet.of(Task.Status.DONE);
+    private static EnumSet<TaskFake.Status> backlogTaskPosibleStatuses =
+            EnumSet.of(TaskFake.Status.BACKLOG, TaskFake.Status.BLOCKED, TaskFake.Status.BLOCKER);
+    private static EnumSet<TaskFake.Status> inProgressTaskPosibleStatuses =
+            EnumSet.of(TaskFake.Status.IN_PROGRESS, TaskFake.Status.ON_REVIEW,
+                    TaskFake.Status.BLOCKED, TaskFake.Status.BLOCKER);
+    private static EnumSet<TaskFake.Status> doneTaskPosibleStatuses = EnumSet.of(TaskFake.Status.DONE);
 
-    public List<Task> getAll(){
+    public List<TaskFake> getAll(){
         return tasks;
     }
 
-    public List<Task> getBacklogTasks() {
+    public List<TaskFake> getBacklogTasks() {
         return tasks.stream()
                 .filter(t -> backlogTaskPosibleStatuses.contains(t.getStatus()))
                 .collect(Collectors.toList());
     }
 
-    public List<Task> getInProgressTasks() {
+    public List<TaskFake> getInProgressTasks() {
         return tasks.stream()
                 .filter(t -> inProgressTaskPosibleStatuses.contains(t.getStatus()))
                 .collect(Collectors.toList());
     }
 
-    public List<Task> getDoneTasks() {
+    public List<TaskFake> getDoneTasks() {
         return tasks.stream()
                 .filter(t -> doneTaskPosibleStatuses.contains(t.getStatus()))
                 .collect(Collectors.toList());
     }
 
-    public void putTask(Task task){
+    public void putTask(TaskFake task){
         tasks.add(task);
     }
 }
