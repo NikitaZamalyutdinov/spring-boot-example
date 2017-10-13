@@ -9,13 +9,8 @@
 <body>
 <div th:replace="header"></div>
 <div class="container site-body">
-    <table>
-        <tr th:each="var : ${#vars}">
-            <td th:text="${var.key}"></td>
-            <td th:text="${var.value}"></td>
-        </tr>
-    </table>
     <div th:replace="tasks_toolbar"></div>
+    <br>
     <div th:replace="tasks_table"></div>
 </div>
 

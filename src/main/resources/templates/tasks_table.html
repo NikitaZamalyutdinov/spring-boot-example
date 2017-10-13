@@ -20,7 +20,7 @@
     <tr>
         <td id="column1" width="30%" style="padding-right: 5%;">
             <table style="width: 100%; table-layout: fixed;">
-                <tbody id="draggable" th:each="task : ${backlogTasks}">
+                <tbody class="draggable" th:each="task : ${backlogTasks}">
                     <tr>
                         <td width="8%">
                             <img th:title="${task.type}"
@@ -60,7 +60,7 @@
         </td>
         <td id="column2" width="30%" style="padding-right: 5%;">
             <table style="width: 100%; table-layout: fixed;">
-                <th:block th:each="task : ${inProgressTasks}">
+                <tbody class="draggable" th:each="task : ${inProgressTasks}">
                     <tr>
                         <td width="8%">
                             <img th:title="${task.type}"
@@ -95,12 +95,12 @@
                                  th:text="${task.name}" th:title="${task.name}"></div>
                         </td>
                     </tr>
-                </th:block>
+                </tbody>
             </table>
         </td>
         <td id="column3" width="30%">
             <table style="width: 100%; table-layout: fixed;">
-                <th:block th:each="task : ${doneTasks}">
+                <tbody class="draggable" th:each="task : ${doneTasks}">
                     <tr>
                         <td width="8%">
                             <img th:title="${task.type}"
@@ -135,7 +135,7 @@
                                  th:text="${task.name}" th:title="${task.name}"></div>
                         </td>
                     </tr>
-                </th:block>
+                </tbody>
             </table>
         </td>
     </tr>

@@ -9,7 +9,7 @@ $( function() {
                 if (x > x3) return 3;
                 return 2;
             }
-            $("#draggable").draggable({
+            $(".draggable").draggable({
                 start: function(e){
                     startDragCol = calcDragCol(e.pageX);
                 },
@@ -19,8 +19,10 @@ $( function() {
                         var text = e.target.innerText;
                         var texts = text.split('%');
                         var taskName = texts[1];
-                        var url = "/taskUpdateStatus?name=" + taskName + "&column=" + cols[endDragCol];
-                        $.post(url);
+                        var url = "/taskUpdateStatus?name=" + taskName + "&column=" + cols[endDragCol - 1];
+                        $.post(url, function(response){
+                            location.reload(); // To see updated table
+                        });
                     }
                 },
                 revert: true
